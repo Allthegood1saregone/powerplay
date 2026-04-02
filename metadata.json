@@ -1,0 +1,5 @@
+{
+  "name": "POWERPLAY",
+  "description": "A real-time hockey play-along game where you pick positions before every face-off to earn points based on live events like goals, hits, and saves.",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,60 @@
+{
+  "entities": {
+    "users": {
+      "title": "User Profile",
+      "description": "Stores user-specific data including tournament entry status.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "hasPaidEntry": { "type": "boolean" },
+        "credits": { "type": "number" },
+        "joinedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "tournaments": {
+      "title": "Tournament",
+      "description": "Details about active and past tournaments.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "entryFee": { "type": "number" },
+        "status": { "type": "string", "enum": ["open", "active", "completed"] },
+        "startTime": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "entryFee", "status"]
+    },
+    "entries": {
+      "title": "Tournament Entry",
+      "description": "Records of users who have paid to enter a tournament.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "displayName": { "type": "string" },
+        "tournamentId": { "type": "string" },
+        "score": { "type": "number" },
+        "paidAt": { "type": "string", "format": "date-time" },
+        "stripeSessionId": { "type": "string" }
+      },
+      "required": ["userId", "tournamentId", "paidAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "users",
+      "description": "User profile and status."
+    },
+    "/tournaments/{tournamentId}": {
+      "schema": "tournaments",
+      "description": "Tournament metadata."
+    },
+    "/tournaments/{tournamentId}/entries/{userId}": {
+      "schema": "entries",
+      "description": "User entry record for a specific tournament."
+    }
+  }
+}
