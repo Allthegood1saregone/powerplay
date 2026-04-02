@@ -1,5 +1,7 @@
 {
     "recommendations": [
-        "firefox-devtools.vscode-firefox-debug"
+        "firefox-devtools.vscode-firefox-debug",
+        "devsense.phptools-vscode",
+        "devsense.intelli-php-vscode"
     ]
 }
