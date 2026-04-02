@@ -432,10 +432,14 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col pb-24 relative overflow-hidden">
       {explosions.map(exp => (
         <div key={exp.id} className="fixed inset-0 z-[100] pointer-events-none flex items-center justify-center">
-          <div className="absolute inset-0 animate-screen-flash" style={{ backgroundColor: `${exp.color}22` }} />
+          <style>{`
+            .dynamic-bg-${exp.id} { background-color: ${exp.color}22; }
+            .dynamic-radial-${exp.id} { background: radial-gradient(circle, ${exp.color} 0%, transparent 70%); }
+          `}</style>
+          <div className={`absolute inset-0 animate-screen-flash dynamic-bg-${exp.id}`} />
           <div className="relative">
             <div className="text-8xl font-black oswald uppercase text-white animate-goal-text drop-shadow-[0_0_20px_rgba(255,255,255,0.8)]">GOAL!</div>
-            <div className="absolute inset-0 animate-goal-explosion" style={{ background: `radial-gradient(circle, ${exp.color} 0%, transparent 70%)` }} />
+            <div className={`absolute inset-0 animate-goal-explosion dynamic-radial-${exp.id}`} />
           </div>
         </div>
       ))}
